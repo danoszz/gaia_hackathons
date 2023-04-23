@@ -1,0 +1,30 @@
+// @import '../../mixins.scss';
+
+
+.promptInputNode {
+  //height: 50px;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-radius: 5px;
+  background: white;
+
+  width: 100%;
+  transition: all 240ms var(--t-ease);
+  backdrop-filter: blur(38px);
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+
+  &:focus-within {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+    
+
+  label {
+    display: block;
+    color: #777;
+    font-size: 12px;
+  }
+}

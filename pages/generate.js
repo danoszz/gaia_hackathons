@@ -1,10 +1,10 @@
-
-"use client"; 
+"use client"
 
 import { useState } from "react"
-import Head from "next/head"
+
+// import Head from "next/head"
 import Image from "next/image"
-import styles from "./page.module.css"
+import styles from "../styles/Generate.module.css"
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -13,7 +13,11 @@ export default function Home() {
   const [error, setError] = useState(null)
 
   const handleSubmit = async (e) => {
+
     e.preventDefault()
+
+    console.log("handleSubmit", e.target.prompt.value)
+
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: {
@@ -23,11 +27,17 @@ export default function Home() {
         prompt: e.target.prompt.value
       })
     })
+    console.log("response11", response)
+
+  
     let prediction = await response.json()
+
     if (response.status !== 201) {
       setError(prediction.detail)
       return
     }
+
+    console.log('prediciton FE', prediction)
     setPrediction(prediction)
 
     while (
@@ -37,29 +47,18 @@ export default function Home() {
       await sleep(1000)
       const response = await fetch("/api/predictions/" + prediction.id)
       prediction = await response.json()
+
       if (response.status !== 200) {
         setError(prediction.detail)
         return
       }
-      console.log({ prediction })
+      console.log("prediction1",prediction )
       setPrediction(prediction)
     }
   }
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Replicate + Next.js</title>
-      </Head>
-
-      <p>
-        Dream something with{" "}
-        <a href="https://replicate.com/stability-ai/stable-diffusion">
-          stability-ai/stable-diffusion
-        </a>
-        :
-      </p>
-
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"

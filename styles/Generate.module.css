@@ -3,7 +3,10 @@
     font-size: 1.3rem;
     max-width: 48rem;
     margin: 0 auto;
+    background-color: #000;
+    color: #fff;
 }
+
 
 .form {
     display: flex;
@@ -17,6 +20,7 @@
     border-radius: 0.25rem;
     font-size: 1.3rem;
     margin-right: 1rem;
+        color: #000;
 }
 
 .form button {
@@ -31,5 +35,12 @@
 .imageWrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
-    position: relative
+    position: relative;
+    min-height: 200px;
+
+}
+
+.imageBox {
+    height: 230px;
+    width: 230px;
 }
